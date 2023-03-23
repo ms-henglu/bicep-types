@@ -167,7 +167,7 @@ export type ResourceFunctionType = TypeBase<TypeBaseKind.ResourceFunctionType, {
   name: string;
   resourceType: string;
   apiVersion: string;
-  output: TypeReference;
+  output?: TypeReference;
   input?: TypeReference;
 }>
 
@@ -351,7 +351,7 @@ export class TypeFactory {
     });
   }
 
-  public addResourceFunctionType(name: string, resourceType: string, apiVersion: string, output: TypeReference, input?: TypeReference) {
+  public addResourceFunctionType(name: string, resourceType: string, apiVersion: string, output?: TypeReference, input?: TypeReference) {
     return this.addType({
       type: TypeBaseKind.ResourceFunctionType,
       name: name,
