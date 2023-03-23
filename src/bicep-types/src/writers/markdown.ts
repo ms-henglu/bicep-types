@@ -213,7 +213,9 @@ export function writeMarkdown(types: BicepType[], fileHeading?: string) {
         if (resourceFunctionType.input !== undefined) {
           md.writeBullet("Input", getTypeName(types, resourceFunctionType.input));
         }
-        md.writeBullet("Output", getTypeName(types, resourceFunctionType.output));
+        if (resourceFunctionType.output !== undefined) {
+          md.writeBullet("Output", getTypeName(types, resourceFunctionType.output));
+        }
 
         md.writeNewLine();
         return;
@@ -303,8 +305,10 @@ export function writeMarkdown(types: BicepType[], fileHeading?: string) {
         typesToWrite.push(types[resourceFunctionType.input.index]);
         findTypesToWrite(types, typesToWrite, resourceFunctionType.input);
       }
-      typesToWrite.push(types[resourceFunctionType.output.index]);
-      findTypesToWrite(types, typesToWrite, resourceFunctionType.output);
+      if (resourceFunctionType.output !== undefined) {
+        typesToWrite.push(types[resourceFunctionType.output.index]);
+        findTypesToWrite(types, typesToWrite, resourceFunctionType.output);
+      }
     }
 
     for (const namespaceFunctionType of namespaceFunctionTypes) {
